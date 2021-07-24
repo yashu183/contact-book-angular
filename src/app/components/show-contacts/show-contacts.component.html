@@ -1,0 +1,27 @@
+<app-add-contact (newContact)="onNewContact($event)"></app-add-contact>
+
+<h3 class="mt-4 container heading">Contacts List</h3>
+<table class="mt-2 container table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody *ngFor = "let contact of contactsArray; let idx = index">
+      <tr>
+        <th scope="row">{{ idx+1 }}</th>
+        <td>{{ contact.nameUsingBuilder }}</td>
+        <td>{{ contact.numberUsingBuilder }}</td>
+        <td>
+            <nav *ngFor = "let add of contact.addresses;">
+                <td>
+                    {{ add.doorNum }},  {{ add.streetName }},  {{ add.dist }},  {{ add.state }},  {{ add.country }}
+                </td>
+            </nav>
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form class = 'container mt-4 border border-secondary rounded shadow' [formGroup]="contactForm" (ngSubmit)="onSubmit()" [formGroup]="contactFormUsingBuilder">
+                <div class="text-center mt-1">
+                    <h3 class="heading">Add Contacts</h3>
+                </div>
+                <div class="form-group mb-2">
+                  <label class="my-1" style="font-size: 20px;" for="contactName">Contact Name</label>
+                  <input type="text" class="form-control" id="contactName" aria-describedby="emailHelp" placeholder="Enter the contact name" formControlName="name" formControlName="nameUsingBuilder">
+                </div>
+                <div class="form-group mb-2">
+                  <label for="contactNumber" class="" style="font-size : 20px;">Phone Number</label>
+                  <input type="password" class="form-control" id="contactNumber" placeholder="Enter phone number" formControlName="number" formControlName="numberUsingBuilder">
+                </div>
+                
+                <div formArrayName="addresses">
+                    <div *ngFor = "let add of addressForm.controls; let idx = index" [formGroupName]="idx">
+                        <div class="form-group">
+                            <span class="input-group-text">Address {{ idx+1 }}</span>
+                        </div>
+                        <div class="input-group mt-1 mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Door No.</span>
+                            </div>
+                            <input type="text" class="form-control" id="dnum" placeholder="Enter door number" formControlName="doorNum">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Street Name</span>
+                            </div>
+                            <input type="text" class="form-control" id="street" placeholder="Enter street name" formControlName="streetName">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">District</span>
+                            </div>
+                            <input type="text" class="form-control" id="dist" placeholder="Enter district name" formControlName="dist">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">State</span>
+                            </div>
+                            <input type="text" class="form-control" id="state" placeholder="Enter state name" formControlName="state">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Country</span>
+                            </div>
+                            <input type="text" class="form-control" id="country" placeholder="Enter Country name" formControlName="country">
+                        </div>
+                        <button (click)="deleteAddress(idx)" class="btn btn-danger w-100 mb-3">Delete Address {{ idx+1 }}</button>
+                    </div>
+                </div>
+            
+                <button (click)="addAddress($event)" style="width : 49%; margin-right: 2%;" class="btn btn-info mb-3">Add address</button>
+                <button style="width: 49%;" type="submit" class=" btn btn-dark mb-3">Add Contact</button>
+            </form>
+        </div>
+    </div>
+</div>
